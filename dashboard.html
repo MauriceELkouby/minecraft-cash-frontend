@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Dashboard - Minecraft Cash</title>
+  <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Dashboard</h1>
+    <p id="cash"></p>
+    <h3>Inventory</h3>
+    <ul id="inventory"></ul>
+
+    <h3>Trade</h3>
+    <input id="mineral" placeholder="Mineral name">
+    <input id="qty" type="number" placeholder="Quantity">
+    <select id="direction">
+        <option value="buy">Buy</option>
+        <option value="sell">Sell</option>
+    </select>
+    <button onclick="trade()">Submit Trade</button>
+
+    <script src="js/dashboard.js"></script>
+  </div>  
+</body>
+</html>
