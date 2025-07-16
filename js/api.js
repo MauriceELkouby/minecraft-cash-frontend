@@ -1,4 +1,4 @@
-const API_URL = "https://your-vercel-backend.vercel.app/api";
+const API_URL = "https://minecraft-cash-backend.vercel.app/api";
 
 export async function post(path, data, token) {
   return fetch(`${API_URL}/${path}`, {
