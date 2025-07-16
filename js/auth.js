@@ -1,6 +1,6 @@
 import { post } from "./api.js";
 
-window.register = async function() {
+async function register() {
   const name = document.getElementById("reg-name").value;
   const email = document.getElementById("reg-email").value;
   const password = document.getElementById("reg-password").value;
@@ -12,9 +12,9 @@ window.register = async function() {
   } else {
     alert(res.error || "Registration failed");
   }
-};
+}
 
-window.login = async function() {
+async function login() {
   const email = document.getElementById("login-email").value;
   const password = document.getElementById("login-password").value;
 
@@ -25,4 +25,11 @@ window.login = async function() {
   } else {
     alert(res.error || "Login failed");
   }
-};
+}
+
+// ✅ Attach events after DOM is ready
+document.getElementById("login-btn").addEventListener("click", login);
+document.getElementById("reg-name") && 
+document.getElementById("reg-email") && 
+document.getElementById("reg-password") &&
+document.querySelector("button[onclick='register()']")?.addEventListener("click", register);
