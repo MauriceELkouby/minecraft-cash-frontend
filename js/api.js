@@ -1,32 +1,21 @@
-import { post } from "./api.js";
+const API_URL = "https://minecraft-cash-backend.vercel.app/api";
 
-async function register() {
-  const name = document.getElementById("reg-name").value;
-  const email = document.getElementById("reg-email").value;
-  const password = document.getElementById("reg-password").value;
-
-  const res = await post("register", { name, email, password });
-  if (res.token) {
-    localStorage.setItem("token", res.token);
-    window.location.href = "dashboard.html";
-  } else {
-    alert(res.error || "Registration failed");
-  }
+export async function post(path, data, token) {
+  return fetch(`${API_URL}/${path}`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      ...(token ? { Authorization: `Bearer ${token}` } : {})
+    },
+    body: JSON.stringify(data)
+  }).then(r => r.json());
 }
 
-async function login() {
-  const email = document.getElementById("login-email").value;
-  const password = document.getElementById("login-password").value;
-
-  const res = await post("login", { email, password });
-  if (res.token) {
-    localStorage.setItem("token", res.token);
-    window.location.href = "dashboard.html";
-  } else {
-    alert(res.error || "Login failed");
-  }
+export async function get(path, token) {
+  return fetch(`${API_URL}/${path}`, {
+    method: "GET",
+    headers: {
+      ...(token ? { Authorization: `Bearer ${token}` } : {})
+    }
+  }).then(r => r.json());
 }
-
-// ✅ Make globally accessible
-window.login = login;
-window.register = register;
