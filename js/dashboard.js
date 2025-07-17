@@ -15,19 +15,25 @@ async function load() {
   });
 }
 
-window.trade = async function() {
-  const mineral = document.getElementById("mineral").value;
-  const qty = parseInt(document.getElementById("qty").value);
-  const direction = document.getElementById("direction").value;
+window.sendTrade = async function() {
+  const recipientEmail = document.getElementById("trade-recipient").value;
+  const mineral = document.getElementById("trade-mineral").value;
+  const qty = parseInt(document.getElementById("trade-qty").value);
+  const price = parseFloat(document.getElementById("trade-price").value);
 
-  const res = await post("trade", { mineral, qty, direction }, token);
+  if (!recipientEmail || !mineral || isNaN(qty) || qty <= 0 || isNaN(price) || price < 0) {
+    alert("Invalid trade inputs.");
+    return;
+  }
+
+  const res = await post("trade-offer", { recipientEmail, mineral, qty, price }, token);
   if (res.error) {
-    alert(res.error);
+    alert("Failed to send offer: " + res.error);
   } else {
-    alert("Trade successful! New cash: $" + res.cash);
-    load();
+    alert("Trade offer sent!");
   }
 };
+
 window.transfer = async function() {
   const recipientEmail = document.getElementById("player").value;
   const amount = parseFloat(document.getElementById("amount").value);

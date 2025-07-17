@@ -12,16 +12,24 @@
     <h3>Inventory</h3>
     <ul id="inventory"></ul>
 
-    <h2>Trade</h2>
-    <input id="mineral" placeholder="Mineral name">
-    <input id="qty" type="number" placeholder="Quantity">
-    <select id="direction">
-        <option value="buy">Buy</option>
-        <option value="sell">Sell</option>
-    </select>
-    <button onclick="trade()">Submit Trade</button>
+    <h2>Send Trade Offer</h2>
+    <input id="trade-recipient" placeholder="To player (email)">
+    <input id="trade-mineral" placeholder="Mineral name">
+    <input id="trade-qty" type="number" placeholder="Quantity">
+    <input id="trade-price" type="number" placeholder="Cash offered">
+    <button onclick="sendTrade()">Send Trade Offer</button>
 
-    <h2>Player Exchange</h2>
+    <div class="trade-columns">
+      <div class="trade-column">
+        <h3>Offers Received</h3>
+        <ul id="offers-received"></ul>
+      </div>
+      <div class="trade-column">
+        <h3>Accepted Trades</h3>
+        <ul id="trades-accepted"></ul>
+      </div>
+    </div>
+    <h2>Money transfer</h2>
     <input id="player" placeholder="To player (email)">
     <input id="amount" type="number" placeholder="Cash to send">
     <button onclick="transfer()">Send Cash</button>
