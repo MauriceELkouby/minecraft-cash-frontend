@@ -27,7 +27,7 @@ h1, h2 {
 
 input, button, select {
   width: 100%;
-  margin: 8px 0 32px 0;
+  margin: 8px 0;
   padding: 10px;
   border: none;
   border-radius: 6px;
@@ -40,6 +40,7 @@ input, select {
 }
 
 button {
+  margin-bottom: 32px;
   background: #0f0;
   color: #111;
   font-weight: bold;
