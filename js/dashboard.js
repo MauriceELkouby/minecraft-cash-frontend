@@ -49,7 +49,13 @@ async function loadTradeFeed() {
     acceptBtn.textContent = "Accept";
     acceptBtn.onclick = () => acceptTrade(offer.id);
 
+    const rejectBtn = document.createElement("button");
+    rejectBtn.textContent = "Reject";
+    rejectBtn.onclick = () => rejectTrade(offer.id);
+
     li.appendChild(acceptBtn);
+    li.appendChild(rejectBtn);
+
     offersList.appendChild(li);
   });
 
@@ -71,6 +77,17 @@ async function acceptTrade(offerId) {
   } else {
     alert("Trade accepted!");
     load();          // refresh balance
+  }
+}
+
+async function rejectTrade(offerId) {
+  const res = await post("trade-reject", { offerId }, token);
+
+  if (res.error) {
+    alert("Failed to reject: " + res.error);
+  } else {
+    alert("Trade rejected.");
+    loadTradeFeed();
   }
 }
 

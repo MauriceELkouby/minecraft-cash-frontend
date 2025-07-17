@@ -97,3 +97,13 @@ li {
   padding: 4px 8px;
   background: #00cc66;
 }
+.trade-column button {
+  margin-left: 10px;
+  font-size: 14px;
+  padding: 4px 8px;
+  background: #00cc66;
+}
+
+.trade-column button:last-child {
+  background: #cc0000;
+}
