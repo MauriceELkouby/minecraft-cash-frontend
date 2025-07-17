@@ -28,5 +28,22 @@ window.trade = async function() {
     load();
   }
 };
+window.transfer = async function() {
+  const recipientEmail = document.getElementById("player").value;
+  const amount = parseFloat(document.getElementById("amount").value);
 
+  if (!recipientEmail || isNaN(amount) || amount <= 0) {
+    alert("Please enter a valid email and amount.");
+    return;
+  }
+
+  const res = await post("transfer", { recipientEmail, amount }, token);
+
+  if (res.error) {
+    alert("Transfer failed: " + res.error);
+  } else {
+    alert("Transfer successful!");
+    load(); // reload balance
+  }
+};
 load();
