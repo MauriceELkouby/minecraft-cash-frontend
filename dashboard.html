@@ -5,6 +5,10 @@
   <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
+  <div class="trade-column">
+        <h3>Offers Received</h3>
+        <ul id="offers-received"></ul>
+  </div>
   <div class="container">
     <h1>Dashboard</h1>
     <h3 id="username"></h3>
@@ -19,17 +23,6 @@
     <input id="trade-price" type="number" placeholder="Cash offered">
     <button onclick="sendTrade()">Send Trade Offer</button>
 
-    <div class="trade-columns">
-      <div class="trade-column">
-        <h3>Offers Received</h3>
-        <ul id="offers-received"></ul>
-      </div>
-      <div class="trade-column">
-        <h3>Accepted Trades</h3>
-        <ul id="trades-accepted"></ul>
-      </div>
-    </div>
-
 
     <h2>Money transfer</h2>
     <input id="player" placeholder="To player (email)">
@@ -37,6 +30,10 @@
     <button onclick="transfer()">Send Cash</button>
 
     <script type="module" src="js/dashboard.js"></script>
+  </div>
+  <div class="trade-column">
+        <h3>Accepted Trades</h3>
+        <ul id="trades-accepted"></ul>
   </div>
 </body>
 </html>
