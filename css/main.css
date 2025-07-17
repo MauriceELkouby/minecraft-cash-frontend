@@ -91,3 +91,9 @@ li {
   margin-top: 0;
   color: #0f0;
 }
+.trade-column button {
+  margin-left: 10px;
+  font-size: 14px;
+  padding: 4px 8px;
+  background: #00cc66;
+}

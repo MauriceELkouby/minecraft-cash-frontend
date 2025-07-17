@@ -40,19 +40,38 @@ async function loadTradeFeed() {
 
   const offersList = document.getElementById("offers-received");
   offersList.innerHTML = "";
+
   data.offersReceived.forEach(offer => {
     const li = document.createElement("li");
-    li.textContent = `${offer.senderEmail} wants to trade ${offer.qty} ${offer.mineral} for $${offer.price}`;
+    li.textContent = `${offer.senderEmail} wants to trade ${offer.qty} ${offer.mineral} for $${offer.price} `;
+
+    const acceptBtn = document.createElement("button");
+    acceptBtn.textContent = "Accept";
+    acceptBtn.onclick = () => acceptTrade(offer.id);
+
+    li.appendChild(acceptBtn);
     offersList.appendChild(li);
   });
 
   const acceptedList = document.getElementById("trades-accepted");
   acceptedList.innerHTML = "";
+
   data.acceptedTrades.forEach(trade => {
     const li = document.createElement("li");
     li.textContent = `${trade.senderEmail} gave ${trade.qty} ${trade.mineral} to ${trade.recipientEmail} for $${trade.price}`;
     acceptedList.appendChild(li);
   });
+}
+
+async function acceptTrade(offerId) {
+  const res = await post("trade-accept", { offerId }, token);
+
+  if (res.error) {
+    alert("Failed to accept: " + res.error);
+  } else {
+    alert("Trade accepted!");
+    load();          // refresh balance
+  }
 }
 
 
