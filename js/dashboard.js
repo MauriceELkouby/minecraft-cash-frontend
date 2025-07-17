@@ -13,6 +13,7 @@ async function load() {
     li.textContent = `${item.name}: ${item.qty}`;
     list.appendChild(li);
   });
+  loadTradeFeed();
 }
 
 window.sendTrade = async function() {
@@ -33,6 +34,27 @@ window.sendTrade = async function() {
     alert("Trade offer sent!");
   }
 };
+
+async function loadTradeFeed() {
+  const data = await get("trade-feed", token);
+
+  const offersList = document.getElementById("offers-received");
+  offersList.innerHTML = "";
+  data.offersReceived.forEach(offer => {
+    const li = document.createElement("li");
+    li.textContent = `${offer.senderEmail} wants to trade ${offer.qty} ${offer.mineral} for $${offer.price}`;
+    offersList.appendChild(li);
+  });
+
+  const acceptedList = document.getElementById("trades-accepted");
+  acceptedList.innerHTML = "";
+  data.acceptedTrades.forEach(trade => {
+    const li = document.createElement("li");
+    li.textContent = `${trade.senderEmail} gave ${trade.qty} ${trade.mineral} to ${trade.recipientEmail} for $${trade.price}`;
+    acceptedList.appendChild(li);
+  });
+}
+
 
 window.transfer = async function() {
   const recipientEmail = document.getElementById("player").value;
