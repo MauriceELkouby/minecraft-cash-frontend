@@ -29,7 +29,4 @@ async function login() {
 
 // ✅ Attach events after DOM is ready
 document.getElementById("login-btn").addEventListener("click", login);
-document.getElementById("reg-name") && 
-document.getElementById("reg-email") && 
-document.getElementById("reg-password") &&
-document.querySelector("button[onclick='register()']")?.addEventListener("click", register);
+document.getElementById('register-btn').addEventListener('click', register);
