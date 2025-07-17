@@ -5,7 +5,7 @@ const token = localStorage.getItem("token");
 async function load() {
   const data = await get("balance", token);
   document.getElementById("cash").innerText = "Cash: $" + data.cash;
-
+  username.textContent = data.name;
   const list = document.getElementById("inventory");
   list.innerHTML = "";
   data.minerals.forEach(item => {
